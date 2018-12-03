@@ -1,0 +1,6 @@
+# AutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.dms.bees.core.base.controller.GlobalController,\
+com.dms.bees.core.config.DefaultFastjsonConfig,\
+com.dms.bees.core.config.DefaultProperties,\
+com.dms.bees.core.config.DefaultWebConfig
