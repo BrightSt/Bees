@@ -6,7 +6,7 @@ package com.dms.bees.core.exception;
  * @author dms
  * @Date 2017/12/28 下午10:33
  */
-public enum beesExceptionEnum implements ServiceExceptionEnum {
+public enum BeesExceptionEnum implements ServiceExceptionEnum {
 
     /**
      * 其他
@@ -30,7 +30,7 @@ public enum beesExceptionEnum implements ServiceExceptionEnum {
     REQUEST_NULL(400, "请求有错误"),
     SERVER_ERROR(500, "服务器异常");
 
-    beesExceptionEnum(int code, String message) {
+    BeesExceptionEnum(int code, String message) {
         this.code = code;
         this.message = message;
     }

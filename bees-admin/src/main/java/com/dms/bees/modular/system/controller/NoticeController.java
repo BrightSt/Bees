@@ -5,7 +5,7 @@ import com.dms.bees.core.common.annotion.BussinessLog;
 import com.dms.bees.core.common.constant.dictmap.NoticeMap;
 import com.dms.bees.core.common.constant.factory.ConstantFactory;
 import com.dms.bees.core.common.exception.BizExceptionEnum;
-import com.dms.bees.core.exception.beesException;
+import com.dms.bees.core.exception.BeesException;
 import com.dms.bees.core.log.LogObjectHolder;
 import com.dms.bees.core.shiro.ShiroKit;
 import com.dms.bees.core.util.ToolUtil;
@@ -94,7 +94,7 @@ public class NoticeController extends BaseController {
     @BussinessLog(value = "新增通知",key = "title",dict = NoticeMap.class)
     public Object add(Notice notice) {
         if (ToolUtil.isOneEmpty(notice, notice.getTitle(), notice.getContent())) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         notice.setCreater(ShiroKit.getUser().getId());
         notice.setCreatetime(new Date());
@@ -126,7 +126,7 @@ public class NoticeController extends BaseController {
     @BussinessLog(value = "修改通知",key = "title",dict = NoticeMap.class)
     public Object update(Notice notice) {
         if (ToolUtil.isOneEmpty(notice, notice.getId(), notice.getTitle(), notice.getContent())) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         Notice old = this.noticeService.selectById(notice.getId());
         old.setTitle(notice.getTitle());

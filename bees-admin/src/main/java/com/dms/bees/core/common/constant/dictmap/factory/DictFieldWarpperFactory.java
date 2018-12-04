@@ -3,7 +3,7 @@ package com.dms.bees.core.common.constant.dictmap.factory;
 import com.dms.bees.core.common.constant.factory.ConstantFactory;
 import com.dms.bees.core.common.constant.factory.IConstantFactory;
 import com.dms.bees.core.common.exception.BizExceptionEnum;
-import com.dms.bees.core.exception.beesException;
+import com.dms.bees.core.exception.BeesException;
 
 import java.lang.reflect.Method;
 
@@ -25,7 +25,7 @@ public class DictFieldWarpperFactory {
                 Method method = IConstantFactory.class.getMethod(methodName, Integer.class);
                 return method.invoke(constantFactory, Integer.parseInt(parameter.toString()));
             } catch (Exception e1) {
-                throw new beesException(BizExceptionEnum.ERROR_WRAPPER_FIELD);
+                throw new BeesException(BizExceptionEnum.ERROR_WRAPPER_FIELD);
             }
         }
     }

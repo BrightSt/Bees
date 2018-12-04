@@ -1,8 +1,8 @@
 package com.dms.bees.core.util;
 
 import com.alibaba.fastjson.JSON;
-import com.dms.bees.core.exception.beesException;
-import com.dms.bees.core.exception.beesExceptionEnum;
+import com.dms.bees.core.exception.BeesException;
+import com.dms.bees.core.exception.BeesExceptionEnum;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class RenderUtil {
             PrintWriter writer = response.getWriter();
             writer.write(JSON.toJSONString(jsonObject));
         } catch (IOException e) {
-            throw new beesException(beesExceptionEnum.WRITE_ERROR);
+            throw new BeesException(BeesExceptionEnum.WRITE_ERROR);
         }
     }
 }

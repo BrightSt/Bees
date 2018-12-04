@@ -12,7 +12,7 @@ import java.util.Map;
  * @author dms
  * @date 2017-05-21 11:34
  */
-public class beesErrorView implements View {
+public class BeesErrorView implements View {
 
     @Override
     public String getContentType() {

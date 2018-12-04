@@ -7,7 +7,7 @@ import com.alibaba.druid.support.spring.stat.BeanTypeAutoProxyCreator;
 import com.alibaba.druid.support.spring.stat.DruidStatInterceptor;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
-import com.dms.bees.config.properties.beesProperties;
+import com.dms.bees.config.properties.BeesProperties;
 import com.dms.bees.core.intercept.RestApiInteceptor;
 import com.dms.bees.core.listener.ConfigListener;
 import com.dms.bees.core.xss.XssFilter;
@@ -38,7 +38,7 @@ import java.util.Properties;
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
-    private beesProperties beesProperties;
+    private BeesProperties beesProperties;
 
     /**
      * 增加swagger的支持

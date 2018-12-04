@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.dms.bees.core.common.exception.BizExceptionEnum;
-import com.dms.bees.core.exception.beesException;
+import com.dms.bees.core.exception.BeesException;
 import com.dms.bees.modular.system.dao.DictMapper;
 import com.dms.bees.modular.system.model.Dict;
 import com.dms.bees.modular.system.service.IDictService;
@@ -29,7 +29,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements ID
         //判断有没有该字典
         List<Dict> dicts = dictMapper.selectList(new EntityWrapper<Dict>().eq("code", dictCode).and().eq("pid", 0));
         if (dicts != null && dicts.size() > 0) {
-            throw new beesException(BizExceptionEnum.DICT_EXISTED);
+            throw new BeesException(BizExceptionEnum.DICT_EXISTED);
         }
 
         //解析dictValues
@@ -57,7 +57,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements ID
             try {
                 itemDict.setNum(Integer.valueOf(num));
             } catch (NumberFormatException e) {
-                throw new beesException(BizExceptionEnum.DICT_MUST_BE_NUMBER);
+                throw new BeesException(BizExceptionEnum.DICT_MUST_BE_NUMBER);
             }
             this.dictMapper.insert(itemDict);
         }

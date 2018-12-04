@@ -1,8 +1,8 @@
 package com.dms.bees.modular.system.controller;
 
+import com.dms.bees.config.properties.BeesProperties;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
-import com.dms.bees.config.properties.beesProperties;
 import com.dms.bees.core.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +28,7 @@ import java.io.IOException;
 public class KaptchaController {
 
     @Autowired
-    private beesProperties beesProperties;
+    private BeesProperties beesProperties;
 
     @Autowired
     private Producer producer;

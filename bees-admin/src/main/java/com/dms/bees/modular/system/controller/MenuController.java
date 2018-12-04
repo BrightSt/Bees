@@ -10,7 +10,7 @@ import com.dms.bees.core.common.constant.dictmap.MenuDict;
 import com.dms.bees.core.common.constant.factory.ConstantFactory;
 import com.dms.bees.core.common.constant.state.MenuStatus;
 import com.dms.bees.core.common.exception.BizExceptionEnum;
-import com.dms.bees.core.exception.beesException;
+import com.dms.bees.core.exception.BeesException;
 import com.dms.bees.core.log.LogObjectHolder;
 import com.dms.bees.core.node.ZTreeNode;
 import com.dms.bees.core.support.BeanKit;
@@ -69,7 +69,7 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/menu_edit/{menuId}")
     public String menuEdit(@PathVariable Long menuId, Model model) {
         if (ToolUtil.isEmpty(menuId)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         Menu menu = this.menuService.selectById(menuId);
 
@@ -102,7 +102,7 @@ public class MenuController extends BaseController {
     @ResponseBody
     public Tip edit(@Valid Menu menu, BindingResult result) {
         if (result.hasErrors()) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         //设置父级菜单编号
         menuSetPcode(menu);
@@ -131,13 +131,13 @@ public class MenuController extends BaseController {
     @ResponseBody
     public Tip add(@Valid Menu menu, BindingResult result) {
         if (result.hasErrors()) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
 
         //判断是否存在该编号
         String existedMenuName = ConstantFactory.me().getMenuNameByCode(menu.getCode());
         if (ToolUtil.isNotEmpty(existedMenuName)) {
-            throw new beesException(BizExceptionEnum.EXISTED_THE_MENU);
+            throw new BeesException(BizExceptionEnum.EXISTED_THE_MENU);
         }
 
         //设置父级菜单编号
@@ -157,7 +157,7 @@ public class MenuController extends BaseController {
     @ResponseBody
     public Tip remove(@RequestParam Long menuId) {
         if (ToolUtil.isEmpty(menuId)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
 
         //缓存菜单的名称
@@ -174,7 +174,7 @@ public class MenuController extends BaseController {
     @ResponseBody
     public Tip view(@PathVariable Long menuId) {
         if (ToolUtil.isEmpty(menuId)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         this.menuService.selectById(menuId);
         return SUCCESS_TIP;
@@ -233,7 +233,7 @@ public class MenuController extends BaseController {
 
             //如果编号和父编号一致会导致无限递归
             if (menu.getCode().equals(menu.getPcode())) {
-                throw new beesException(BizExceptionEnum.MENU_PCODE_COINCIDENCE);
+                throw new BeesException(BizExceptionEnum.MENU_PCODE_COINCIDENCE);
             }
 
             menu.setLevels(pLevels + 1);

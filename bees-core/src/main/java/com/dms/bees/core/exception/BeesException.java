@@ -6,13 +6,13 @@ package com.dms.bees.core.exception;
  * @author dms
  * @Date 2017/12/28 下午10:32
  */
-public class beesException extends RuntimeException {
+public class BeesException extends RuntimeException {
 
     private Integer code;
 
     private String message;
 
-    public beesException(ServiceExceptionEnum serviceExceptionEnum) {
+    public BeesException(ServiceExceptionEnum serviceExceptionEnum) {
         this.code = serviceExceptionEnum.getCode();
         this.message = serviceExceptionEnum.getMessage();
     }

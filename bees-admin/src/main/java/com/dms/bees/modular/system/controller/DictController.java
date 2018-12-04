@@ -8,7 +8,7 @@ import com.dms.bees.core.common.constant.Const;
 import com.dms.bees.core.common.constant.dictmap.DictMap;
 import com.dms.bees.core.common.constant.factory.ConstantFactory;
 import com.dms.bees.core.common.exception.BizExceptionEnum;
-import com.dms.bees.core.exception.beesException;
+import com.dms.bees.core.exception.BeesException;
 import com.dms.bees.core.log.LogObjectHolder;
 import com.dms.bees.core.util.ToolUtil;
 import com.dms.bees.modular.system.model.Dict;
@@ -81,7 +81,7 @@ public class DictController extends BaseController {
     @ResponseBody
     public Object add(String dictCode,String dictTips,String dictName, String dictValues) {
         if (ToolUtil.isOneEmpty(dictCode,dictName, dictValues)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         this.dictService.addDict(dictCode,dictName,dictTips,dictValues);
         return SUCCESS_TIP;
@@ -117,7 +117,7 @@ public class DictController extends BaseController {
     @ResponseBody
     public Object update(Integer dictId,String dictCode,String dictName, String dictTips,String dictValues) {
         if (ToolUtil.isOneEmpty(dictId, dictCode, dictName, dictValues)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         dictService.editDict(dictId, dictCode,dictName, dictTips,dictValues);
         return SUCCESS_TIP;

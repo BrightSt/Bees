@@ -1,8 +1,8 @@
 package com.dms.bees.core.config;
 
-import com.dms.bees.core.exception.beesException;
-import com.dms.bees.core.base.controller.beesErrorView;
-import com.dms.bees.core.exception.beesExceptionEnum;
+import com.dms.bees.core.exception.BeesException;
+import com.dms.bees.core.base.controller.BeesErrorView;
+import com.dms.bees.core.exception.BeesExceptionEnum;
 import com.dms.bees.core.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,8 +24,8 @@ public class DefaultWebConfig extends WebMvcConfigurationSupport {
     private RequestMappingHandlerAdapter handlerAdapter;
 
     @Bean("error")
-    public beesErrorView error() {
-        return new beesErrorView();
+    public BeesErrorView error() {
+        return new BeesErrorView();
     }
 
     @PostConstruct
@@ -55,7 +55,7 @@ public class DefaultWebConfig extends WebMvcConfigurationSupport {
             } else if (timeSecondsFlag) {
                 return DateUtil.parseTime(dateString);
             } else {
-                throw new beesException(beesExceptionEnum.INVLIDE_DATE_STRING);
+                throw new BeesException(BeesExceptionEnum.INVLIDE_DATE_STRING);
             }
 
         }

@@ -16,8 +16,8 @@ import static com.dms.bees.core.util.ToolUtil.isEmpty;
  * @Date 2017/5/23 22:31
  */
 @Component
-@ConfigurationProperties(prefix = beesProperties.PREFIX)
-public class beesProperties {
+@ConfigurationProperties(prefix = BeesProperties.PREFIX)
+public class BeesProperties {
 
     public static final String PREFIX = "bees";
 

@@ -1,7 +1,7 @@
 package com.dms.bees.generator.engine;
 
 
-import com.dms.bees.generator.engine.base.beesTemplateEngine;
+import com.dms.bees.generator.engine.base.BeesTemplateEngine;
 import com.dms.bees.core.util.ToolUtil;
 
 /**
@@ -10,7 +10,7 @@ import com.dms.bees.core.util.ToolUtil;
  * @author dms
  * @date 2017-05-09 20:32
  */
-public class SimpleTemplateEngine extends beesTemplateEngine {
+public class SimpleTemplateEngine extends BeesTemplateEngine {
 
     @Override
     protected void generatePageEditHtml() {

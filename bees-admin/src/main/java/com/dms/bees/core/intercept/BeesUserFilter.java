@@ -37,7 +37,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @since 0.9
  */
-public class beesUserFilter extends AccessControlFilter {
+public class BeesUserFilter extends AccessControlFilter {
 
     /**
      * Returns <code>true</code> if the request is a

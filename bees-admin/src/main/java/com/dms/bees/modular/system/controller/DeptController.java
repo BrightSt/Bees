@@ -6,7 +6,7 @@ import com.dms.bees.core.common.annotion.Permission;
 import com.dms.bees.core.common.constant.dictmap.DeptDict;
 import com.dms.bees.core.common.constant.factory.ConstantFactory;
 import com.dms.bees.core.common.exception.BizExceptionEnum;
-import com.dms.bees.core.exception.beesException;
+import com.dms.bees.core.exception.BeesException;
 import com.dms.bees.core.log.LogObjectHolder;
 import com.dms.bees.core.node.ZTreeNode;
 import com.dms.bees.core.util.ToolUtil;
@@ -88,7 +88,7 @@ public class DeptController extends BaseController {
     @ResponseBody
     public Object add(Dept dept) {
         if (ToolUtil.isOneEmpty(dept, dept.getSimplename())) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         //完善pids,根据pid拿到pid的pids
         deptSetPids(dept);
@@ -125,7 +125,7 @@ public class DeptController extends BaseController {
     @ResponseBody
     public Object update(Dept dept) {
         if (ToolUtil.isEmpty(dept) || dept.getId() == null) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         deptSetPids(dept);
         deptService.updateById(dept);

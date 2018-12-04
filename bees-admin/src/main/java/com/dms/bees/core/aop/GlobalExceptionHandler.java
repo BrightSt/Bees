@@ -3,7 +3,7 @@ package com.dms.bees.core.aop;
 import com.dms.bees.core.common.exception.BizExceptionEnum;
 import com.dms.bees.core.common.exception.InvalidKaptchaException;
 import com.dms.bees.core.base.tips.ErrorTip;
-import com.dms.bees.core.exception.beesException;
+import com.dms.bees.core.exception.BeesException;
 import com.dms.bees.core.log.LogManager;
 import com.dms.bees.core.log.factory.LogTaskFactory;
 import com.dms.bees.core.shiro.ShiroKit;
@@ -40,10 +40,10 @@ public class GlobalExceptionHandler {
     /**
      * 拦截业务异常
      */
-    @ExceptionHandler(beesException.class)
+    @ExceptionHandler(BeesException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ErrorTip notFount(beesException e) {
+    public ErrorTip notFount(BeesException e) {
         LogManager.me().executeLog(LogTaskFactory.exceptionLog(ShiroKit.getUser().getId(), e));
         getRequest().setAttribute("tip", e.getMessage());
         log.error("业务异常:", e);

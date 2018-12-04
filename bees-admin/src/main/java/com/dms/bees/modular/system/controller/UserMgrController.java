@@ -1,6 +1,6 @@
 package com.dms.bees.modular.system.controller;
 
-import com.dms.bees.config.properties.beesProperties;
+import com.dms.bees.config.properties.BeesProperties;
 import com.dms.bees.core.base.controller.BaseController;
 import com.dms.bees.core.base.tips.Tip;
 import com.dms.bees.core.common.annotion.BussinessLog;
@@ -12,7 +12,7 @@ import com.dms.bees.core.common.constant.state.ManagerStatus;
 import com.dms.bees.core.common.exception.BizExceptionEnum;
 import com.dms.bees.core.datascope.DataScope;
 import com.dms.bees.core.db.Db;
-import com.dms.bees.core.exception.beesException;
+import com.dms.bees.core.exception.BeesException;
 import com.dms.bees.core.log.LogObjectHolder;
 import com.dms.bees.core.shiro.ShiroKit;
 import com.dms.bees.core.shiro.ShiroUser;
@@ -51,7 +51,7 @@ public class UserMgrController extends BaseController {
     private static String PREFIX = "/system/user/";
 
     @Autowired
-    private beesProperties beesProperties;
+    private BeesProperties beesProperties;
 
     @Autowired
     private IUserService userService;
@@ -80,7 +80,7 @@ public class UserMgrController extends BaseController {
     @RequestMapping("/role_assign/{userId}")
     public String roleAssign(@PathVariable Integer userId, Model model) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         User user = (User) Db.create(UserMapper.class).selectOneByCon("id", userId);
         model.addAttribute("userId", userId);
@@ -95,7 +95,7 @@ public class UserMgrController extends BaseController {
     @RequestMapping("/user_edit/{userId}")
     public String userEdit(@PathVariable Integer userId, Model model) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
         User user = this.userService.selectById(userId);
@@ -113,7 +113,7 @@ public class UserMgrController extends BaseController {
     public String userInfo(Model model) {
         Integer userId = ShiroKit.getUser().getId();
         if (ToolUtil.isEmpty(userId)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         User user = this.userService.selectById(userId);
         model.addAttribute(user);
@@ -138,7 +138,7 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Object changePwd(@RequestParam String oldPwd, @RequestParam String newPwd, @RequestParam String rePwd) {
         if (!newPwd.equals(rePwd)) {
-            throw new beesException(BizExceptionEnum.TWO_PWD_NOT_MATCH);
+            throw new BeesException(BizExceptionEnum.TWO_PWD_NOT_MATCH);
         }
         Integer userId = ShiroKit.getUser().getId();
         User user = userService.selectById(userId);
@@ -149,7 +149,7 @@ public class UserMgrController extends BaseController {
             user.updateById();
             return SUCCESS_TIP;
         } else {
-            throw new beesException(BizExceptionEnum.OLD_PWD_NOT_RIGHT);
+            throw new BeesException(BizExceptionEnum.OLD_PWD_NOT_RIGHT);
         }
     }
 
@@ -179,13 +179,13 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Tip add(@Valid UserDto user, BindingResult result) {
         if (result.hasErrors()) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
 
         // 判断账号是否重复
         User theUser = userService.getByAccount(user.getAccount());
         if (theUser != null) {
-            throw new beesException(BizExceptionEnum.USER_ALREADY_REG);
+            throw new BeesException(BizExceptionEnum.USER_ALREADY_REG);
         }
 
         // 完善账号信息
@@ -208,7 +208,7 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Tip edit(@Valid UserDto user, BindingResult result) throws NoPermissionException {
         if (result.hasErrors()) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
 
         User oldUser = userService.selectById(user.getId());
@@ -223,7 +223,7 @@ public class UserMgrController extends BaseController {
                 this.userService.updateById(UserFactory.editUser(user, oldUser));
                 return SUCCESS_TIP;
             } else {
-                throw new beesException(BizExceptionEnum.NO_PERMITION);
+                throw new BeesException(BizExceptionEnum.NO_PERMITION);
             }
         }
     }
@@ -237,11 +237,11 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Tip delete(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         //不能删除超级管理员
         if (userId.equals(Const.ADMIN_ID)) {
-            throw new beesException(BizExceptionEnum.CANT_DELETE_ADMIN);
+            throw new BeesException(BizExceptionEnum.CANT_DELETE_ADMIN);
         }
         assertAuth(userId);
         this.userService.setStatus(userId, ManagerStatus.DELETED.getCode());
@@ -255,7 +255,7 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public User view(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
         return this.userService.selectById(userId);
@@ -270,7 +270,7 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Tip reset(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
         User user = this.userService.selectById(userId);
@@ -289,11 +289,11 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Tip freeze(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         //不能冻结超级管理员
         if (userId.equals(Const.ADMIN_ID)) {
-            throw new beesException(BizExceptionEnum.CANT_FREEZE_ADMIN);
+            throw new BeesException(BizExceptionEnum.CANT_FREEZE_ADMIN);
         }
         assertAuth(userId);
         this.userService.setStatus(userId, ManagerStatus.FREEZED.getCode());
@@ -309,7 +309,7 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Tip unfreeze(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
         this.userService.setStatus(userId, ManagerStatus.OK.getCode());
@@ -325,11 +325,11 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Tip setRole(@RequestParam("userId") Integer userId, @RequestParam("roleIds") String roleIds) {
         if (ToolUtil.isOneEmpty(userId, roleIds)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         //不能修改超级管理员
         if (userId.equals(Const.ADMIN_ID)) {
-            throw new beesException(BizExceptionEnum.CANT_CHANGE_ADMIN);
+            throw new BeesException(BizExceptionEnum.CANT_CHANGE_ADMIN);
         }
         assertAuth(userId);
         this.userService.setRoles(userId, roleIds);
@@ -348,7 +348,7 @@ public class UserMgrController extends BaseController {
             String fileSavePath = beesProperties.getFileUploadPath();
             picture.transferTo(new File(fileSavePath + pictureName));
         } catch (Exception e) {
-            throw new beesException(BizExceptionEnum.UPLOAD_ERROR);
+            throw new BeesException(BizExceptionEnum.UPLOAD_ERROR);
         }
         return pictureName;
     }
@@ -366,7 +366,7 @@ public class UserMgrController extends BaseController {
         if (deptDataScope.contains(deptid)) {
             return;
         } else {
-            throw new beesException(BizExceptionEnum.NO_PERMITION);
+            throw new BeesException(BizExceptionEnum.NO_PERMITION);
         }
 
     }

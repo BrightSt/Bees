@@ -1,6 +1,6 @@
 package com.dms.bees.base;
 
-import com.dms.bees.beesApplication;
+import com.dms.bees.BeesApplication;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import org.springframework.web.context.WebApplicationContext;
  * @Date 2017/5/21 16:10
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = beesApplication.class)
+@SpringBootTest(classes = BeesApplication.class)
 @WebAppConfiguration
 //@Transactional //打开的话测试之后数据可自动回滚
 public class BaseJunit {

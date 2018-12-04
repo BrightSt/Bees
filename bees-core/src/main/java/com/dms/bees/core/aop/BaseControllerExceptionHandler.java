@@ -1,8 +1,8 @@
 package com.dms.bees.core.aop;
 
 import com.dms.bees.core.base.tips.ErrorTip;
-import com.dms.bees.core.exception.beesException;
-import com.dms.bees.core.exception.beesExceptionEnum;
+import com.dms.bees.core.exception.BeesException;
+import com.dms.bees.core.exception.BeesExceptionEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -23,10 +23,10 @@ public class BaseControllerExceptionHandler {
     /**
      * 拦截业务异常
      */
-    @ExceptionHandler(beesException.class)
+    @ExceptionHandler(BeesException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ErrorTip notFount(beesException e) {
+    public ErrorTip notFount(BeesException e) {
         log.error("业务异常:", e);
         return new ErrorTip(e.getCode(), e.getMessage());
     }
@@ -39,7 +39,7 @@ public class BaseControllerExceptionHandler {
     @ResponseBody
     public ErrorTip notFount(RuntimeException e) {
         log.error("运行时异常:", e);
-        return new ErrorTip(beesExceptionEnum.SERVER_ERROR.getCode(), beesExceptionEnum.SERVER_ERROR.getMessage());
+        return new ErrorTip(BeesExceptionEnum.SERVER_ERROR.getCode(), BeesExceptionEnum.SERVER_ERROR.getMessage());
     }
 
 }

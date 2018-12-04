@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.dms.bees.generator.engine.SimpleTemplateEngine;
-import com.dms.bees.generator.engine.base.beesTemplateEngine;
+import com.dms.bees.generator.engine.base.BeesTemplateEngine;
 import com.dms.bees.generator.engine.config.ContextConfig;
 import com.dms.bees.generator.engine.config.SqlConfig;
 import com.dms.bees.core.util.FileUtil;
@@ -99,7 +99,7 @@ public abstract class AbstractGeneratorConfig {
     }
 
     public void dobeesGeneration() {
-        beesTemplateEngine beesTemplateEngine = new SimpleTemplateEngine();
+        BeesTemplateEngine beesTemplateEngine = new SimpleTemplateEngine();
         beesTemplateEngine.setContextConfig(contextConfig);
         sqlConfig.setConnection(dataSourceConfig.getConn());
         beesTemplateEngine.setSqlConfig(sqlConfig);

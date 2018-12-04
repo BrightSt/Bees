@@ -1,7 +1,7 @@
 package com.dms.bees.config.web;
 
-import com.dms.bees.config.properties.beesProperties;
-import com.dms.bees.core.intercept.beesUserFilter;
+import com.dms.bees.config.properties.BeesProperties;
+import com.dms.bees.core.intercept.BeesUserFilter;
 import com.dms.bees.core.shiro.ShiroDbRealm;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
@@ -64,7 +64,7 @@ public class ShiroConfig {
      */
     @Bean
     @ConditionalOnProperty(prefix = "bees", name = "spring-session-open", havingValue = "false")
-    public DefaultWebSessionManager defaultWebSessionManager(CacheManager cacheShiroManager, beesProperties beesProperties) {
+    public DefaultWebSessionManager defaultWebSessionManager(CacheManager cacheShiroManager, BeesProperties beesProperties) {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         sessionManager.setCacheManager(cacheShiroManager);
         sessionManager.setSessionValidationInterval(beesProperties.getSessionValidationInterval() * 1000);
@@ -142,7 +142,7 @@ public class ShiroConfig {
          * 覆盖默认的user拦截器(默认拦截器解决不了ajax请求 session超时的问题,若有更好的办法请及时反馈作者)
          */
         HashMap<String, Filter> myFilters = new HashMap<>();
-        myFilters.put("user", new beesUserFilter());
+        myFilters.put("user", new BeesUserFilter());
         shiroFilter.setFilters(myFilters);
 
         /**

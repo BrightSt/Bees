@@ -1,7 +1,7 @@
 package com.dms.bees.core.tag;
 
 import com.dms.bees.core.common.exception.BizExceptionEnum;
-import com.dms.bees.core.exception.beesException;
+import com.dms.bees.core.exception.BeesException;
 import com.dms.bees.core.util.ToolUtil;
 import com.dms.bees.modular.system.model.Dict;
 import com.dms.bees.modular.system.service.IDictService;
@@ -31,7 +31,7 @@ public class DictSelectorTag extends Tag {
         //String tagName = (String) this.args[0];
         Map attrs = (Map) args[1];
         if(ToolUtil.isEmpty(attrs.get("code"))){
-            throw new beesException(BizExceptionEnum.ERROR_CODE_EMPTY);
+            throw new BeesException(BizExceptionEnum.ERROR_CODE_EMPTY);
         }
 
         //字典类型编码

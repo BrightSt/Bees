@@ -1,7 +1,7 @@
 package com.dms.bees.core.util;
 
-import com.dms.bees.core.exception.beesException;
-import com.dms.bees.core.exception.beesExceptionEnum;
+import com.dms.bees.core.exception.BeesException;
+import com.dms.bees.core.exception.BeesExceptionEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +23,7 @@ public class FileUtil {
         File f = new File(filename);
         if (!f.exists()) {
             log.error("文件未找到！" + filename);
-            throw new beesException(beesExceptionEnum.FILE_NOT_FOUND);
+            throw new BeesException(BeesExceptionEnum.FILE_NOT_FOUND);
         }
         FileChannel channel = null;
         FileInputStream fs = null;
@@ -37,17 +37,17 @@ public class FileUtil {
             }
             return byteBuffer.array();
         } catch (IOException e) {
-            throw new beesException(beesExceptionEnum.FILE_READING_ERROR);
+            throw new BeesException(BeesExceptionEnum.FILE_READING_ERROR);
         } finally {
             try {
                 channel.close();
             } catch (IOException e) {
-                throw new beesException(beesExceptionEnum.FILE_READING_ERROR);
+                throw new BeesException(BeesExceptionEnum.FILE_READING_ERROR);
             }
             try {
                 fs.close();
             } catch (IOException e) {
-                throw new beesException(beesExceptionEnum.FILE_READING_ERROR);
+                throw new BeesException(BeesExceptionEnum.FILE_READING_ERROR);
             }
         }
     }

@@ -12,12 +12,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date 2017/5/21 12:06
  */
 @SpringBootApplication
-public class beesApplication {
+public class BeesApplication {
 
-    private final static Logger logger = LoggerFactory.getLogger(beesApplication.class);
+    private final static Logger logger = LoggerFactory.getLogger(BeesApplication.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(beesApplication.class, args);
-        logger.info("beesApplication is success!");
+        SpringApplication.run(BeesApplication.class, args);
+        logger.info("BeesApplication is success!");
     }
 }

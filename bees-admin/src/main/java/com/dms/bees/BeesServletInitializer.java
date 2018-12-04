@@ -9,10 +9,10 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * @author dms
  * @date 2017-05-21 9:43
  */
-public class beesServletInitializer extends SpringBootServletInitializer {
+public class BeesServletInitializer extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(beesApplication.class);
+        return builder.sources(BeesApplication.class);
     }
 }

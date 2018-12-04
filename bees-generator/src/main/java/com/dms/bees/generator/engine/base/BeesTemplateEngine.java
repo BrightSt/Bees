@@ -19,11 +19,11 @@ import java.util.Properties;
  * @author dms
  * @date 2017-05-07 22:15
  */
-public abstract class beesTemplateEngine extends AbstractTemplateEngine {
+public abstract class BeesTemplateEngine extends AbstractTemplateEngine {
 
     private GroupTemplate groupTemplate;
 
-    public beesTemplateEngine() {
+    public BeesTemplateEngine() {
         initBeetlEngine();
     }
 

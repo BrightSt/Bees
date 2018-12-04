@@ -10,7 +10,7 @@ import com.dms.bees.core.common.constant.cache.Cache;
 import com.dms.bees.core.common.constant.dictmap.RoleDict;
 import com.dms.bees.core.common.constant.factory.ConstantFactory;
 import com.dms.bees.core.common.exception.BizExceptionEnum;
-import com.dms.bees.core.exception.beesException;
+import com.dms.bees.core.exception.BeesException;
 import com.dms.bees.core.log.LogObjectHolder;
 import com.dms.bees.core.node.ZTreeNode;
 import com.dms.bees.core.util.Convert;
@@ -74,7 +74,7 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "/role_edit/{roleId}")
     public String roleEdit(@PathVariable Integer roleId, Model model) {
         if (ToolUtil.isEmpty(roleId)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         Role role = this.roleService.selectById(roleId);
         model.addAttribute(role);
@@ -91,7 +91,7 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "/role_assign/{roleId}")
     public String roleAssign(@PathVariable("roleId") Integer roleId, Model model) {
         if (ToolUtil.isEmpty(roleId)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         model.addAttribute("roleId", roleId);
         model.addAttribute("roleName", ConstantFactory.me().getSingleRoleName(roleId));
@@ -118,7 +118,7 @@ public class RoleController extends BaseController {
     @ResponseBody
     public Tip add(@Valid Role role, BindingResult result) {
         if (result.hasErrors()) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         role.setId(null);
         this.roleService.insert(role);
@@ -134,7 +134,7 @@ public class RoleController extends BaseController {
     @ResponseBody
     public Tip edit(@Valid Role role, BindingResult result) {
         if (result.hasErrors()) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         this.roleService.updateById(role);
 
@@ -152,12 +152,12 @@ public class RoleController extends BaseController {
     @ResponseBody
     public Tip remove(@RequestParam Integer roleId) {
         if (ToolUtil.isEmpty(roleId)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
 
         //不能删除超级管理员角色
         if (roleId.equals(Const.ADMIN_ROLE_ID)) {
-            throw new beesException(BizExceptionEnum.CANT_DELETE_ADMIN);
+            throw new BeesException(BizExceptionEnum.CANT_DELETE_ADMIN);
         }
 
         //缓存被删除的角色名称
@@ -177,7 +177,7 @@ public class RoleController extends BaseController {
     @ResponseBody
     public Tip view(@PathVariable Integer roleId) {
         if (ToolUtil.isEmpty(roleId)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         this.roleService.selectById(roleId);
         return SUCCESS_TIP;
@@ -192,7 +192,7 @@ public class RoleController extends BaseController {
     @ResponseBody
     public Tip setAuthority(@RequestParam("roleId") Integer roleId, @RequestParam("ids") String ids) {
         if (ToolUtil.isOneEmpty(roleId)) {
-            throw new beesException(BizExceptionEnum.REQUEST_NULL);
+            throw new BeesException(BizExceptionEnum.REQUEST_NULL);
         }
         this.roleService.setAuthority(roleId, ids);
         return SUCCESS_TIP;

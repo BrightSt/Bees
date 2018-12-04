@@ -1,7 +1,7 @@
 package com.dms.bees.modular.code.factory;
 
 
-import com.dms.bees.beesApplication;
+import com.dms.bees.BeesApplication;
 import com.dms.bees.core.CoreFlag;
 import com.dms.bees.core.util.ToolUtil;
 import com.dms.bees.generator.action.model.GenQo;
@@ -44,7 +44,7 @@ public class DefaultTemplateFactory {
         GenQo genQo = new GenQo();
         genQo.setProjectPath(ToolUtil.getWebRootPath(null));
         genQo.setAuthor("dms");
-        genQo.setProjectPackage(beesApplication.class.getPackage().getName());
+        genQo.setProjectPackage(BeesApplication.class.getPackage().getName());
         genQo.setCorePackage(CoreFlag.class.getPackage().getName());
         genQo.setIgnoreTabelPrefix("sys_");
         genQo.setModuleName("system");

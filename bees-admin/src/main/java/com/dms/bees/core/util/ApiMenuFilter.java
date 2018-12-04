@@ -1,7 +1,7 @@
 package com.dms.bees.core.util;
 
+import com.dms.bees.config.properties.BeesProperties;
 import com.dms.bees.core.common.constant.Const;
-import com.dms.bees.config.properties.beesProperties;
 import com.dms.bees.core.node.MenuNode;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class ApiMenuFilter extends MenuNode {
     public static List<MenuNode> build(List<MenuNode> nodes) {
 
         //如果关闭了接口文档,则不显示接口文档菜单
-        beesProperties beesProperties = SpringContextHolder.getBean(beesProperties.class);
+        BeesProperties beesProperties = SpringContextHolder.getBean(BeesProperties.class);
         if (!beesProperties.getSwaggerOpen()) {
             List<MenuNode> menuNodesCopy = new ArrayList<>();
             for (MenuNode menuNode : nodes) {
