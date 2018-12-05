@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.enums.IdType;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -19,6 +21,14 @@ import java.util.Date;
 @TableName("sys_user")
 public class User extends Model<User> {
 
+	public static Map<String,String> colMap = null;
+	static {
+		colMap = new LinkedHashMap<>();
+		colMap.put("account","账号");
+		colMap.put("name","名字");
+		colMap.put("birthday","生日");
+		colMap.put("roleid","角色ID");
+	}
     private static final long serialVersionUID = 1L;
 
     /**
