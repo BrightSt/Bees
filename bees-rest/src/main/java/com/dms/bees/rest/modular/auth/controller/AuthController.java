@@ -1,10 +1,10 @@
 package com.dms.bees.rest.modular.auth.controller;
 
+import com.dms.bees.core.exception.BeesException;
 import com.dms.bees.rest.modular.auth.controller.dto.AuthRequest;
 import com.dms.bees.rest.modular.auth.controller.dto.AuthResponse;
 import com.dms.bees.rest.modular.auth.util.JwtTokenUtil;
 import com.dms.bees.rest.modular.auth.validator.IReqValidator;
-import com.dms.bees.core.exception.beesException;
 import com.dms.bees.rest.common.exception.BizExceptionEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +38,7 @@ public class AuthController {
             final String token = jwtTokenUtil.generateToken(authRequest.getUserName(), randomKey);
             return ResponseEntity.ok(new AuthResponse(token, randomKey));
         } else {
-            throw new beesException(BizExceptionEnum.AUTH_REQUEST_ERROR);
+            throw new BeesException(BizExceptionEnum.AUTH_REQUEST_ERROR);
         }
     }
 }
