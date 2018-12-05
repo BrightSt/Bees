@@ -21,6 +21,7 @@ import java.util.Map;
 @TableName("sys_user")
 public class User extends Model<User> {
 
+	// colMap的作用是：导出表格时并不是所有的字段都需要导出，利用colMap来配置哪些字段需要导出
 	public static Map<String,String> colMap = null;
 	static {
 		colMap = new LinkedHashMap<>();

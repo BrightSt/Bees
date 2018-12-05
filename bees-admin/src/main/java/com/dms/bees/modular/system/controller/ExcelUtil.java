@@ -20,7 +20,7 @@ public class ExcelUtil {
      * 创建excel文件
      * @param list 数据list
      * @param cls 类.class
-     * @param colMap 对应表头
+     * @param colMap 对应表头，以及配置哪些字段需要导出
      * @param <T>
      * @return
      */
