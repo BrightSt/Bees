@@ -39,7 +39,7 @@ spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/bees?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC
     username: root
-    password: mysql
+    password: root
     db-name: bees #用来搜集数据库的所有表
     filters: wall,mergeStat
 

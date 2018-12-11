@@ -1,1 +1,1 @@
-package com.dms.bees.modular.designpatterns.factory.simple;/** * 为什么要有plane工厂？ * 由客户直接创建对象可能存在不安全，不能控制创建的过程 * 由planeFactory统一创建plane，有利于控制创建过程。 * @author Dong * */public class PlaneFactory extends VehicleFactory{    /**     * 效果：统一的创建对象方法     * @return     */    public Moveable create() {        return new Plane();    }}
+package com.dms.bees.modular.designpatterns.factory.simple;/** * 飞机工厂类 */public class PlaneFactory extends VehicleFactory{    @Override    Moveable create() {        return new Plane();    }}

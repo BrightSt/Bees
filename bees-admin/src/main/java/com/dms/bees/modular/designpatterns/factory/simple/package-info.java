@@ -1,1 +1,1 @@
-/** * 简单工厂模式 *//** * @author Dong * */package com.dms.bees.modular.designpatterns.factory.simple;
+/** * 简单工厂模式 */package com.dms.bees.modular.designpatterns.factory.simple;

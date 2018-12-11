@@ -1,1 +1,1 @@
-package com.dms.bees.modular.designpatterns.factory.simple;public abstract class VehicleFactory {		abstract Moveable create();}
+package com.dms.bees.modular.designpatterns.factory.simple;/** * 交通工具创建工厂 */public abstract class VehicleFactory{    abstract Moveable create();}
